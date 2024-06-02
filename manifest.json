@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "YouTube Normal Player To Embed",
+    "name": "Ad-Devourer",
     "version": "1.0.0",
-    "description": "Play all Youtube Video in the Embed URLs.",
+    "description": "He likes to eat advertisements.",
     "icons": { "48": "images/icon-48.png", "128": "images/icon-128.png" },
     "permissions": [
         "activeTab",
