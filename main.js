@@ -8,6 +8,7 @@ const observer = new MutationObserver(function(mutations) {
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    if (redirectShorts(new URL(window.location).pathname)) return;
     // 配置 observer 觀察目標節點及其子節點
     var config = { childList: true, subtree: true };
 
@@ -16,12 +17,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 document.addEventListener("yt-navigate-start", (e) => {
-    const url = e?.detail?.url;
-    if (!url) return;
-    if (!url.startsWith("/shorts")) return;
-    const v = url.replace("shorts/", "").replace('/', '');
-    window.location = `https://www.youtube.com/watch?v=${v}`;
+    redirectShorts(e?.detail?.url);
 });
+
+function redirectShorts(pathname) {
+    if (!pathname) return false;
+    if (!pathname.startsWith("/shorts")) return false;
+    const v = pathname.replace("shorts/", "").replace('/', '');
+    window.location = `https://www.youtube.com/watch?v=${v}`;
+
+    return true;
+}
 
 let i = -1;
 function replacement() {
